@@ -1,0 +1,272 @@
+<h2 mat-dialog-title class="text-green1"> Add New Employee</h2>
+<mat-dialog-content class="changeScroll">
+  <div class="w-100">
+    <form [formGroup]="AddEmployeeGroup" autocomplete="off" (keydown.enter)='saveNewEmployee()' novalidate>
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="">
+            <mat-form-field appearance="outline">
+                <mat-label>Full Name</mat-label>
+                <input autocomplete="off" formControlName="fullname" matInput placeholder="Enter fullname">
+            </mat-form-field>
+        </div>
+        </div>
+        <div class="col-lg-4">
+          <mat-form-field appearance="outline">
+            <mat-label>Mobile no.</mat-label>
+            <input autocomplete="off" formControlName="mobilenumber" matInput placeholder="Enter Mobile no.">
+          </mat-form-field>
+        </div>
+        <div class="col-lg-4">
+          <div>
+            <div class="mb-2">
+              <mat-label>Gender</mat-label>
+            </div>
+            <mat-radio-group formControlName="gender" aria-label="Select an option">
+              <mat-radio-button value="male">Male</mat-radio-button>
+              <mat-radio-button value="female">Female</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="">
+            
+            <mat-form-field appearance="outline">
+                <mat-label>Date of Joining</mat-label>
+                  <input matInput formControlName="DateOfJoining" [matDatepicker]="datepicker">
+                  <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+                  <mat-datepicker #datepicker>
+                    <mat-datepicker-actions>
+                      <button mat-button matDatepickerCancel>Cancel</button>
+                      <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                    </mat-datepicker-actions>
+                  </mat-datepicker>
+                
+            </mat-form-field>
+        </div>
+        </div>
+        <div class="col-lg-4">
+          <mat-form-field appearance="outline">
+            <mat-label>Experience</mat-label>
+            <input autocomplete="off" formControlName="experience" matInput placeholder="Enter Experience">
+          </mat-form-field>
+        </div>
+        <div class="col-lg-4">
+          <mat-form-field appearance="outline">
+            <mat-label>Grade</mat-label>
+            <mat-select formControlName='grade'>
+              <mat-option value="G-1">G-1</mat-option>
+              <mat-option value="G-2">G-2</mat-option>
+              <mat-option value="G-3">G-3</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="col-lg-4">
+          <mat-form-field appearance="outline">
+            <mat-label>Official Email</mat-label>
+            <input autocomplete="off" formControlName="OfficialEmail" matInput placeholder="Enter Official Email">
+          </mat-form-field>
+        </div>
+
+        <div class="col-lg-4">
+          <mat-form-field appearance="outline">
+            <mat-label>Microsoft Email</mat-label>
+            <input autocomplete="off" formControlName="MicrosoftEmail" matInput placeholder="Enter Microsoft Email">
+          </mat-form-field>
+        </div>
+        <div class="col-lg-4">
+          <mat-form-field appearance="outline">
+            <mat-label>Personal email ID</mat-label>
+            <input autocomplete="off" formControlName="PersonalEmailID" matInput placeholder="Enter Personal email ID">
+          </mat-form-field>
+        </div>
+        
+        <div class="col-lg-3">
+          <mat-form-field appearance="outline">
+            <mat-label>Designation</mat-label>
+            <mat-select formControlName='designation'>
+              <mat-option value="SeniorSoftwareEngineerDevelopment">Senior Software Engineer - Development</mat-option>
+              <mat-option value="AssociateTeamLeadDevelopment">Associate Team Lead - Development</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        
+        <div class="col-lg-3">
+          <mat-form-field appearance="outline">
+            <mat-label>Department</mat-label>
+            <mat-select formControlName='department'>
+              <mat-option value="Development">Development</mat-option>
+              <mat-option value="Management">Management</mat-option>
+              <mat-option value="Operations">Operations</mat-option>
+              <mat-option value="MarketResearch">Market Research</mat-option>
+              <mat-option value="DataAnalytics">Data Analytics</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        
+        <div class="col-lg-3">
+          <mat-form-field appearance="outline">
+            <mat-label>Reporting Manager</mat-label>
+            <mat-select formControlName='ReportingManager'>
+              <mat-option value="Madan">Madan</mat-option>
+              <mat-option value="Vandana">Vandana</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="col-lg-3">
+          <mat-form-field appearance="outline">
+            <mat-label>Primary Manager</mat-label>
+            <mat-select formControlName='PrimaryManager'>
+              <mat-option value="Madan">Madan</mat-option>
+              <mat-option value="Vandana">Vandana</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-lg-4">
+          <mat-form-field appearance="outline">
+            <mat-label>Bank Account Number</mat-label>
+            <input formControlName="BankAccountNumber" matInput placeholder="Enter Bank Account Number">
+          </mat-form-field>
+        </div>
+
+        <div class="col-lg-4">
+          <mat-form-field appearance="outline">
+            <mat-label>IFSC code</mat-label>
+            <input formControlName="IFSCcode" matInput placeholder="Enter IFSC code">
+          </mat-form-field>
+        </div>
+
+        <div class="col-lg-4">
+          <mat-form-field appearance="outline">
+            <mat-label>PAN Number</mat-label>
+            <input formControlName="PANNumber" matInput placeholder="Enter PAN Number*">
+          </mat-form-field>
+        </div>
+        <div class="col-lg-3">
+          <mat-form-field appearance="outline">
+            <mat-label>Aadhar Number</mat-label>
+            <input formControlName="AadharNumber" matInput placeholder="Enter Aadhar Number">
+          </mat-form-field>
+        </div>
+        
+        <div class="col-lg-3">
+          <mat-form-field appearance="outline">
+            <mat-label>Alternate Number</mat-label>
+            <input formControlName="AlternateNumber"  matInput placeholder="Enter Alternate Number">
+          </mat-form-field>
+        </div>
+        <div class="col-lg-3">
+          <mat-form-field appearance="outline">
+            <mat-label>Blood Group</mat-label>
+            <input formControlName="BloodGroup" matInput placeholder="Enter Blood Group">
+          </mat-form-field>
+        </div>
+        <div class="col-lg-3">
+          <mat-form-field appearance="outline">
+            <mat-label>DOB-Actual</mat-label>
+                <input matInput formControlName="DOBActual" [matDatepicker]="datepickerA">
+                <mat-datepicker-toggle matSuffix [for]="datepickerA"></mat-datepicker-toggle>
+                <mat-datepicker #datepickerA>
+                  <mat-datepicker-actions>
+                    <button mat-button matDatepickerCancel>Cancel</button>
+                    <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                  </mat-datepicker-actions>
+                </mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <div class="col-lg-3">
+          <mat-form-field appearance="outline">
+            <mat-label>DOB-Documented</mat-label>
+            <input matInput formControlName="DOBdocumented" [matDatepicker]="DOBdocumented">
+            <mat-datepicker-toggle matSuffix [for]="DOBdocumented"></mat-datepicker-toggle>
+            <mat-datepicker #DOBdocumented>
+              <mat-datepicker-actions>
+                <button mat-button matDatepickerCancel>Cancel</button>
+                <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+              </mat-datepicker-actions>
+            </mat-datepicker>
+          </mat-form-field> 
+        </div>
+
+        <div class="col-lg-3">
+          <mat-form-field appearance="outline">
+            <mat-label>Marriage Anniversary</mat-label>
+            <input matInput formControlName="MarriageAnniversary" [matDatepicker]="MarriageAnniversary">
+            <mat-datepicker-toggle matSuffix [for]="MarriageAnniversary"></mat-datepicker-toggle>
+            <mat-datepicker #MarriageAnniversary>
+              <mat-datepicker-actions>
+                <button mat-button matDatepickerCancel>Cancel</button>
+                <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+              </mat-datepicker-actions>
+            </mat-datepicker>
+          </mat-form-field> 
+        </div>
+        <div class="col-lg-3">
+          <mat-form-field appearance="outline">
+            <mat-label>Resignation Date</mat-label>
+            <input matInput formControlName="ResignationDate" [matDatepicker]="ResignationDate">
+            <mat-datepicker-toggle matSuffix [for]="ResignationDate"></mat-datepicker-toggle>
+            <mat-datepicker #ResignationDate>
+              <mat-datepicker-actions>
+                <button mat-button matDatepickerCancel>Cancel</button>
+                <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+              </mat-datepicker-actions>
+            </mat-datepicker>
+          </mat-form-field> 
+        </div>
+        <div class="col-lg-3">
+          <mat-form-field appearance="outline">
+            <mat-label>Last Working Day</mat-label>
+            <input matInput formControlName="LastWorkingDay" [matDatepicker]="LastWorkingDay">
+            <mat-datepicker-toggle matSuffix [for]="LastWorkingDay"></mat-datepicker-toggle>
+            <mat-datepicker #LastWorkingDay>
+              <mat-datepicker-actions>
+                <button mat-button matDatepickerCancel>Cancel</button>
+                <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+              </mat-datepicker-actions>
+            </mat-datepicker>
+          </mat-form-field> 
+        </div>
+
+        <div class="col-lg-4">
+          <mat-form-field  appearance="outline">
+            <mat-label>Temporary Address</mat-label>
+            <textarea matInput formControlName="TemporaryAddress" placeholder="Enter Temporary Address..."></textarea>
+          </mat-form-field>
+        </div>
+
+        <div class="col-lg-4">
+          <mat-form-field  appearance="outline">
+            <mat-label>Permanent Address</mat-label>
+            <textarea matInput formControlName="PermanentAddress" placeholder="Enter Permanent Address..."></textarea>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-4">
+          <mat-form-field  appearance="outline">
+            <mat-label>Reason for Leaving</mat-label>
+            <textarea matInput formControlName="ReasonforLeaving" placeholder="Enter Reason for Leaving..."></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+            <div class="flex justify-content-end">
+              <div class="d-inline">
+                <button mat-button mat-dialog-close>Cancel</button>
+                <button [mat-dialog-close]="true"  mat-raised-button [disabled]="!AddEmployeeGroup.valid" (click)="saveNewEmployee()" class="ml-3" color="primary">Save</button>
+              </div>
+            </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</mat-dialog-content>

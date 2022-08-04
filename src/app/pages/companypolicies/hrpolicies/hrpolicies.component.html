@@ -1,0 +1,157 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="breadcrumb-bar mb-">
+                <ul class="breadcrumb">
+                    <li class=""><a class="text-dark" >Company Policies</a></li>
+                    <li class="px-1">/</li>
+                    <li class=""><a class="text-green1" routerLink="hrpolicies">Hr Policies</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+   
+    
+    <mat-card>
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <button mat-raised-button (click)="CreateNewPolicies(content)" color="accent" class="">
+                    <span class="material-symbols-outlined">add</span> Add Policies
+                </button>
+            </div>
+            <div class="col-md-4">
+                <div class="searchFilter">
+                    <mat-form-field floatLabel="never">
+                        <mat-icon class="text-muted" matPrefix>search</mat-icon>
+                        <input matInput type="text" (keyup)="applyFilter($event)" #input placeholder="Search...!">
+                    </mat-form-field>  
+                </div>      
+            </div>
+        </div>
+        <div class="">
+            <div class="changeScroll tableFixHeight">
+                <table class="table-hover table-striped" mat-table [dataSource]="dataSource" matSort >
+                       
+                    <ng-container matColumnDef="title">
+                        <th mat-header-cell class="fontSizetable" *matHeaderCellDef > Title </th>
+                        <td mat-cell *matCellDef="let element;">{{ element.policy_title}}</td>
+                    </ng-container>
+                
+                    <ng-container matColumnDef="date" >
+                        <th mat-header-cell class="fontSizetable" *matHeaderCellDef > Date </th>
+                        <td mat-cell *matCellDef="let element">
+                             {{element.updated_date}} </td>
+                    </ng-container>
+                
+                    <ng-container matColumnDef="pdfUpload">
+                        <th mat-header-cell class="fontSizetable" *matHeaderCellDef>Document </th>
+                        <td mat-cell *matCellDef="let element">
+                            <a target="_blank" href="{{this.documentURL}}files/policy_docs/{{element.policy_doc}}">
+                                <span class="material-symbols-outlined">picture_as_pdf</span>
+                            </a>  
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="remark">
+                        <th mat-header-cell class="fontSizetable" *matHeaderCellDef>Remark </th>
+                        <td mat-cell *matCellDef="let element"> {{element.remark}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="action">
+                        <th mat-header-cell class="fontSizetable" *matHeaderCellDef>Action </th>
+                        <td mat-cell *matCellDef="let element"> 
+                            <button (click)="deletePolicies(element)" mat-raised-button mat-mini-fab color="warn">
+                                <span class="material-symbols-outlined">delete</span>
+                            </button>
+                            <button (click)="update(element, content)" class="ml-3" mat-raised-button mat-mini-fab color="">
+                                <span class="material-symbols-outlined">drive_file_rename_outline</span>
+                            </button>
+                        </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+            </div>
+            <mat-paginator #scheduledOrdersPaginator  class="mat-paginator-sticky" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20, 50, 100]"
+            showFirstLastButtons >
+            </mat-paginator>
+        </div>
+    </mat-card>
+</div>
+
+
+<!-- delete policies modal -->
+<ng-template #deletePoliciesPopup>
+    <div>
+        <h3 matDialogTitle>
+            Are you sure delete "<b class="text-danger"> {{storeDeleteData?.policy_title}} </b>" ?
+        </h3>
+    </div>
+    <mat-dialog-actions align="end">
+        <button mat-button color="default" matDialogClose="no">cancel</button>
+        <button mat-raised-button (click)="confirmedDelete(storeDeleteData)" color="primary" >save</button>
+    </mat-dialog-actions>
+</ng-template>
+<!-- delete policies modal -->
+
+<!-- Add policies modal -->
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title mb-0" id="modal-basic-title">
+             {{title}}      
+        </h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <form #myForm="ngForm" (ngSubmit)="AddNewPolicie(myForm.value)"  autocomplete="off"  novalidate>
+            <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label>Policie Title</label>
+
+                    <select class="form-control" [(ngModel)]="post.title_id" name="title_id"
+                    *ngIf="btnText=='Save'">
+                    <option value="null" selected disabled>Select</option>
+                    <option *ngFor="let i of dropdown_hr_policy_data" ngValue="{{i.rid}}">{{i.policy_title}}
+                    </option>
+                </select>
+                <select class="form-control"  name="title_id"
+                    *ngIf="btnText=='Update'">
+                    <option *ngFor="let i of dropdown_hr_policy_data" ngValue="{{i.rid}}"
+                        [selected]="title_id == i.rid" disabled>{{i.policy_title}}</option>
+                </select>
+
+                </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="datePickerStyle">
+                    <label>Date of Joining</label>
+                    <div class="input-group">
+                        <input class="form-control" [(ngModel)]="post.updated_date" placeholder="yyyy-mm-dd"
+                               name="updated_date"  ngbDatepicker #d="ngbDatepicker">
+                        <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+                      </div>
+                  </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                      <label>Remark</label>
+                      <textarea class="form-control" name="remark" [(ngModel)]="post.remark" placeholder="Enter Remark..."></textarea>
+                  </div>
+                <div class="col-lg-6">
+                    <div class="">
+                        <label>Upload PDF</label>
+                        <input #fileInput multiple name="policy_doc" (change)="selectFile($event)" accept=".pdf" type="file" class="form-control" [(ngModel)]="post.policy_doc" >
+                        <a *ngIf="displayOldPdf" target="_blank" href="{{this.documentURL}}files/policy_docs/{{oldPdfUploaded}}">view previous uploaded pdf</a>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer mt-4">
+                <button mat-button  color="default" (click)="modal.close('Close click')">cancel</button>
+                <button mat-raised-button class="ml-3" [disabled]="!myForm.valid" type="submit"  color="primary" >{{btnText}}</button>
+            </div>
+        </form>
+    </div>
+  </ng-template>
+
+<!-- Add policies modal -->

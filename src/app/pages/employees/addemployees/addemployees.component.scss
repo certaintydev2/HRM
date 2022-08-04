@@ -1,0 +1,16 @@
+@import '../../../../assets/style/variable';
+::ng-deep {
+    .mat-form-field-appearance-outline .mat-form-field-outline {
+       color: $dark_green;
+    }
+    mat-form-field {
+       .mat-hint, input, ::placeholder, .mat-form-field-label {
+          color: $dark_green;
+       }
+    }
+ }
+ .mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+  }
+
+      

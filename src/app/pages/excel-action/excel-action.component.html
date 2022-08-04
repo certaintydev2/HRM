@@ -1,0 +1,16 @@
+<div class="container">
+    <input id="choosefile" type="file" (change)="excelUpload($event)" style="display: none;">
+    <div ngbDropdown container="body">
+        <button class="btn btn-outline-dark excel btn-sm status_ddl" ngbDropdownToggle>Excel Action</button>
+        <div ngbDropdownMenu>
+            <button ngbDropdownItem (click)="exportAsXLSX()">Download Data</button>
+        <!--<div *ngIf="flag == true">
+                <button ngbDropdownItem  (click)="downloadDataForUpload()"> Download Template</button>
+            </div>
+            <div *ngIf="flag == false">
+                <button ngbDropdownItem > <a href={{this.excelDetails.sheetpath}}  download = {{this.excelDetails.sheetname}}> Download Template </a> </button>
+            </div> -->
+            <button ngbDropdownItem (click)="choseFile($event)">Upload Data</button>
+        </div>
+    </div>
+</div>

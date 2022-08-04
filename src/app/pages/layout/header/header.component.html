@@ -1,0 +1,18 @@
+<div class="topHeader">
+    <div class="d-flex justify-content-between w-100">
+       <div>
+           <div class="position-reletive"> 
+               <button mat-button [matMenuTriggerFor]="menu">
+               <img src="https://themes.laborator.co/xenon/assets/images/user-4.png" height="28px" alt="">
+               <span class="avatar-status profile-status bg-green"></span>
+               <span class="pl-1">John</span>
+               <mat-icon class="pr-1">expand_more</mat-icon>
+            </button>
+           </div>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item><mat-icon>manage_accounts</mat-icon> Profile</button>
+                <button mat-menu-item (click)="loginServices.logOut()" > <mat-icon>logout</mat-icon> Logout</button>
+            </mat-menu>
+        </div>
+    </div>
+</div> 

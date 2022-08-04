@@ -1,0 +1,18 @@
+.aboutComponent{
+    .fixHeight{
+        height: calc(100vh - 140px);
+        overflow: auto;
+        overflow-x: hidden;
+    }
+}
+.galleryDisplayPopup{
+    position: relative;
+    img{
+        height: calc(100vh - 268px);
+    }
+    // .closebtn{
+    //     position: absolute;
+    //     right: -24px;
+    //     top: -20px;
+    // }
+}

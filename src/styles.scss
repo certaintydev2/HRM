@@ -1,0 +1,40 @@
+// @import './assets/style/variable';
+/* You can add global styles to this file, and also import other style files */
+@import '~ngx-org-chart/_theming.scss';
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
+@import "~@ng-select/ng-select/themes/material.theme.css";
+
+@import './assets/style/styles.scss';
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+mat-form-field {
+    width: 100%;
+}
+.mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary {
+    background-color: #a4c73d;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline-thick {
+    color: rgb(239 239 244);
+}
+
+::ng-deep {
+    .mat-form-field-appearance-outline .mat-form-field-outline {
+       color: $dark_green;
+    }
+    mat-form-field {
+       .mat-hint, input, ::placeholder, .mat-form-field-label {
+          color: $dark_green;
+       }
+    }
+ }
+
+      

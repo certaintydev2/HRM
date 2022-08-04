@@ -1,0 +1,110 @@
+
+.main_container {
+    width: 100%;
+    height: 100vh;
+    .topHeader {
+        width: 100%;
+        .position-reletive {
+            position: relative;
+        }
+    }
+    .mtToolBar {
+        box-shadow: 1px 1px 6px rgb(0 0 0 / 20%);
+        border-bottom: 1px solid #c8c6c6;
+    }
+}
+.wapper_container {
+    height: calc(100vh - 70px);
+    width: 100%;
+    background-color: #e9ecef;
+    padding-top: 7px;
+    overflow: auto;
+    .breadcrumb {
+        background-color: transparent;
+        padding-left: 0;
+        margin-bottom: 0;
+    }
+    .searchFilter {
+        .mat-form-field-flex {
+            align-items: flex-end;
+        }
+    }
+}
+
+.dashboardComponent {
+    .employeeCard {
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.50);
+        -webkit-transition: all 0.9s ease;
+        transition: all 0.9s ease;
+        -moz-transition: all 0.9s ease;
+        -o-transition: all 0.9s ease;
+        -ms-transition: all 0.9s ease;
+        background-color: #fff;
+        margin-bottom: 10px;
+        opacity: 0.9;
+        &:hover {
+            opacity: 1;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.50);
+            transform: translateY(-5px);
+        }
+        .headerImg {
+            background-image: url("../images/employeeCards.jpg");
+            background-repeat: no-repeat;
+            position: relative;
+            // height: 100px;
+            background-position: center;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            width: 100%;
+        }
+        .cardBody {
+            padding: 10px 12px;
+            h4 {
+                font-weight: 600;
+                margin-bottom: 5px;
+            }
+            p {
+                margin-bottom: 3px;
+                font-size: 13px;
+                color: $muted;
+            }
+        }
+    }
+}
+
+
+// datepicker 
+.datePickerStyle {
+    .ngb-dp-weekday {
+      color: $textGreen !important;
+    }
+    .ngb-dp-arrow {
+      .btn-link {
+        color: $textGreen !important;
+      }
+    }
+    .btn-outline-secondary {
+        &:hover {
+          color: $white !important;
+          background-color: $textGreen !important;
+          border-color: $white !important;
+        }
+        &:focus {
+          color: $white !important;
+          background-color: $textGreen !important;
+          border-color: $white !important;
+        }
+        &:active {
+          color: $white !important;
+          background-color: $textGreen !important;
+          border-color: $white !important;
+        }
+    }
+    .ngb-dp-day {
+        .bg-primary {
+          background-color: $textGreen !important;
+        }
+    }
+}

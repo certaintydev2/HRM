@@ -1,0 +1,276 @@
+
+    <div class="container-fluid" id="container">
+        <div class="row mt-4 align-items-center">
+            <div class="col-md-4">
+                <div class="d-flex align-items-center">
+                    <button mat-raised-button (click)="openPopup(content)"  color="accent" class="">
+                        <span class="material-symbols-outlined">add</span>
+                        Add Leaves
+                    </button>
+                    <div id="excel_actions" class="excel-action ml-1">
+                        <app-excel-action [flag]="false" [downloadExceldata]="all_leaves_data" [excelDetails]="excel_action">
+                        </app-excel-action>
+                    </div>
+                </div>
+            </div>
+            
+
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-6">
+                        <ng-select (change)="filterDataYear()" class="select_filter_ddl" placeholder="Select Year"
+                        [(ngModel)]="selected_filter_date" [items]="pre_year_range" bindLabel="year" bindValue="year"></ng-select>
+                    </div>
+                    <div class="col-md-6">
+                        <ng-select (change)="filterDataStatus()" class="filter_status" placeholder="Select Status"
+                        [(ngModel)]="selected_filter_status" name="selected_filter_status" [items]="statusFilterDDl" bindLabel="status" bindValue="id">
+                    </ng-select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="searchFilter">
+                    <mat-form-field floatLabel="never">
+                        <mat-icon class="text-muted" matPrefix>search</mat-icon>
+                        <input matInput type="text" (keyup)="applyFilter($event)" #input placeholder="{{commonContent.SEARCH}}">
+                    </mat-form-field>  
+                </div> 
+            </div>
+            <div class="col-md-1">
+                <button (click)="refresh()" mat-raised-button>
+                    <i class="fa fa-refresh refresh_btn"></i>
+                </button>
+            </div>
+
+        </div>
+
+        <!-- list of all leave data -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="">
+                    <div class="changeScroll tableFixHeight">
+                        <table class="table-hover table-striped" mat-table [dataSource]="dataSource" matSort>
+        
+                            <ng-container matColumnDef="employee_name">
+                                <th mat-header-cell class="fontSizetable" *matHeaderCellDef>
+                                    {{commonContent.LEAVES_BALANCE_EMPLOYEE_NAME}} </th>
+                                <td mat-cell *matCellDef="let element;">
+                                    {{element.employee_name}}
+                                </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="total_el">
+                                <th mat-header-cell class="fontSizetable" *matHeaderCellDef>
+                                    {{commonContent.LEAVES_BALANCE_TOTAL_LEAVES}} </th>
+                                <td mat-cell *matCellDef="let element;">
+                                    <span>{{commonContent.LEAVES_BALANCE_EARNED}}</span>{{element.total_el}}
+                                    <br>
+                                    <span>{{commonContent.LEAVES_BALANCE_CASUSL}}</span>{{element.total_sl}}
+                                </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="eligible_el">
+                                <th mat-header-cell class="fontSizetable" *matHeaderCellDef>
+                                    {{commonContent.LEAVES_BALANCE_ELIGIBLE_LEAVES}} </th>
+                                <td mat-cell *matCellDef="let element;">
+                                    <span>{{commonContent.LEAVES_BALANCE_EARNED}}</span>{{element.eligible_el}}
+                                    <br>
+                                    <span>{{commonContent.LEAVES_BALANCE_SICK}}</span>{{element.eligible_sl}}
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="el_last_yr_carry_forward">
+                                <th mat-header-cell class="fontSizetable" *matHeaderCellDef>
+                                    {{commonContent.LEAVES_BALANCE_CARRY_FORWORD_LAST_YEAR}} </th>
+                                <td mat-cell *matCellDef="let element;">
+                                    {{element.el_last_yr_carry_forward}}
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="el_taken_in_current_year">
+                                <th mat-header-cell class="fontSizetable" *matHeaderCellDef>
+                                    {{commonContent.LEAVES_BALANCE_CURRENT_YEAR_LEAVES_OR_COMMENTS}} </th>
+                                <td mat-cell *matCellDef="let element;">
+                                    <span>{{commonContent.LEAVES_BALANCE_LWP}}</span>{{element.lwp}}
+                                    <br/>
+                                    <span>{{commonContent.LEAVES_BALANCE_EL}}</span>{{element.el_taken_in_current_year}}
+                                    <br/>
+                                    <span>{{commonContent.LEAVES_BALANCE_SL}}</span>{{element.sl_cl_in_current_year_taken}}
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="sl_cl_balance">
+                                <th mat-header-cell class="fontSizetable" *matHeaderCellDef>
+                                    {{commonContent.LEAVES_BALANCE_LEAVES}} </th>
+                                <td mat-cell *matCellDef="let element;">
+                                    <span>{{commonContent.LEAVES_BALANCE_ENCASHED}}</span>{{element.el_encashed}}
+                                    <br/>
+                                    <span>{{commonContent.LEAVES_BALANCE_EL}}</span>{{element.el_balance}}
+                                    <br/>
+                                    <span>{{commonContent.LEAVES_BALANCE_SL_CL}}</span>{{element.sl_cl_balance}}
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="status">
+                                <th mat-header-cell class="fontSizetable" *matHeaderCellDef>
+                                    {{commonContent.LEAVES_BALANCE_STATUS}} </th>
+                                <td mat-cell *matCellDef="let element;" class="pr-3">
+                                    <select class="form-control" name="status" (change)="status(element.is_active,element.rid)">
+                                        <option value=element.is_active class="dropdown-item">{{element.is_active == 1 ?
+                                            commonContent.ACTIVE:
+                                            commonContent.INACTIVE}}</option>
+                                        <option value=element.is_acitve! class="dropdown-item">{{element.is_active !== 1 ?
+                                            commonContent.ACTIVE: commonContent.INACTIVE}}
+                                        </option>
+                                    </select>
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="action">
+                                <th mat-header-cell class="fontSizetable" *matHeaderCellDef>
+                                    {{commonContent.LEAVES_BALANCE_ACTION}} </th>
+                                <td mat-cell *matCellDef="let element;">
+                                    <button (click)="editLeavesBalance(element, content)"  mat-raised-button mat-mini-fab color="">
+                                        <span class="material-symbols-outlined">drive_file_rename_outline</span>
+                                    </button>
+                                    <button (click)="redirectToVersionHistory(element.rid,element.year)" class="ml-3" mat-raised-button mat-mini-fab color="">
+                                        <i class="fa fa-code-fork "></i>
+                                    </button>
+                                </td>
+                            </ng-container>
+        
+        
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>
+                    </div>
+                    <mat-paginator #scheduledOrdersPaginator class="mat-paginator-sticky" [pageSize]="pageSize"
+                        [pageSizeOptions]="[5, 10, 20, 50, 100]" showFirstLastButtons>
+                    </mat-paginator>
+                </div>
+
+            </div>
+          
+        </div>
+    </div>
+    
+
+    <ng-template #content let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title mb-0" id="modal-basic-title">
+            {{title}}
+            </h4>
+          <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+            <form #leavesBalance="ngForm" [formGroup]="updateLeavesBalance" (keydown.enter)="$event.preventDefault()">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <span> {{commonContent.LEAVES_BALANCE_YEAR}}<span class="error_msg">*</span></span>
+                        <ng-select formControlName="year" [items]="pre_year_range" bindLabel="year" bindValue="year"
+                            required
+                            [ngClass]="{'is-invalidate': this.leavesBalance.control.controls.year.invalid && this.leavesBalance.submitted}">
+                        </ng-select>
+                    </div>
+
+                    <div class="form-group">
+                        <span> {{commonContent.LEAVES_BALANCE_EMPLOYEE_NAME}}<span class="error_msg">*</span></span>
+                        <ng-select formControlName="emp_id" (change)="seletedDate($event)" [items]="employee_data"
+                            bindLabel="full_name" bindValue="rid" required
+                            [ngClass]="{'is-invalidate': this.leavesBalance.control.controls.emp_id.invalid && this.leavesBalance.submitted}">
+                        </ng-select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <span> {{commonContent.LEAVES_BALANCE_START_DATE}}</span>
+                        <input type="text" class="form-control" [(ngModel)]="start_date" formControlName="start_date"
+                            name="start_date" ngModel />
+                    </div>
+
+                    <div class="form-group">
+                        <span> {{commonContent.LEAVES_BALANCE_CURRENT_DATE}}</span>
+                        <input type="text" class="form-control" formControlName="cur_date" name="cur_date"
+                            [(ngModel)]="cur_date" />
+                    </div>
+
+                    <div class="form-group">
+                        <span> {{commonContent.LEAVES_BALANCE_TOTAL_EARNED_LEAVES}}</span>
+                        <input type="number" class="form-control" formControlName="total_el" (change)="calculateLeave('')"
+                            name="total_el" id="total_el" readonly [(ngModel)]="total_el" />
+                    </div>
+
+                    <div class="form-group">
+                        <span> {{commonContent.LEAVES_BALANCE_TOTAL_CASUAL_LEAVES}}<span
+                                class="error_msg">*</span></span>
+                        <input type="number" class="form-control" formControlName="total_sl" name="total_sl"
+                            id="total_sl" [(ngModel)]="total_sl" required
+                            [ngClass]="{'is-invalid': this.leavesBalance.control.controls.total_sl.invalid && this.leavesBalance.submitted}" />
+                    </div>
+                    <div class="form-group">
+                        <span> {{commonContent.LEAVES_BALANCE_ELIGIBLE_EARNED_LEAVES}}</span>
+                        <input type="number" class="form-control" formControlName="eligible_el"
+                            name="eligible_el" id="eligible_el" readonly ngModel />
+                    </div>
+                    <div class="form-group">
+                        <span> {{commonContent.LEAVES_BALANCE_ELIGIBLE_SICK_LEAVES}}</span>
+                        <input type="number" class="form-control" formControlName="eligible_sl"
+                            name="eligible_sl" id="eligible_sl" readonly ngModel />
+                    </div>
+                    <div class="form-group">
+                        <span> {{commonContent.LEAVES_BALANCE_CARRY_FORWORD_LAST_YEAR}}</span>
+                        <input type="number" class="form-control" formControlName="el_last_yr_carry_forward"
+                            name="el_last_yr_carry_forward" id="el_last_yr_carry_forward" readonly />
+                    </div>
+                    <div class="form-group">
+                        <span> {{ commonContent.LEAVES_BALANCE_LEAVES_WITHOUT_PAY}}</span>
+                        <input type="text" class="form-control" (change)="calculateLeave($event)"
+                            formControlName="lwp" name="lwp" id="lwp" ngModel
+                            required />
+                    </div>
+                    <div class="form-group">
+                        <span> {{commonContent.LEAVES_BALANCE_LWP_COMMENTS}}</span>
+                        <textarea class="form-control" formControlName="lwp_comment" name="lwp_comment" id="lwp_comment"
+                            rows="1"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-6"> 
+                    <div class="form-group">
+                        <span> {{commonContent.LEAVES_BALANCE_EL_TAKEN_IN_CURRENT_YEAR}}</span>
+                        <input type="text" class="form-control" (change)="calculateLeave($event)"
+                            formControlName="el_cur_yr" name="el_cur_yr"
+                            id="el_cur_yr" required />
+                    </div>
+                    <div class="form-group">
+                        <span> {{commonContent.LEAVES_BALANCE_EL_COMMENTS}}</span>
+                        <textarea class="form-control" (change)="calculateLeave('')" formControlName="el_comment"
+                            name="el_comment" id="el_comment" rows="1"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <span> {{commonContent.LEAVES_BALANCE_SL_CL_TAKEN_IN_CURRENT_YEAR}}</span>
+                        <input type="text" class="form-control" (change)="calculateLeave($event)"
+                            formControlName="sl_cl_cur_yr" name="sl_cl_cur_yr"
+                            id="sl_cl_cur_yr" required />
+                    </div>
+                    <div class="form-group">
+                        <span> {{commonContent.LEAVES_BALANCE_SL_CL_COMMENTS}}</span>
+                        <textarea class="form-control" (change)="calculateLeave('')" formControlName="sl_cl_comment"
+                            name="sl_cl_comment" id="sl_cl_comment" rows="1"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <span> {{commonContent.LEAVES_BALANCE_EL_ENCASHED}}</span>
+                        <input type="text" class="form-control" (change)="calculateLeave($event)"
+                            formControlName="el_encashed" name="el_encashed" id="el_encashed" />
+                    </div>
+                    <div class="form-group">
+                        <span> {{commonContent.LEAVES_BALANCE_EL_BALANCE}}</span>
+                        <input type="number" class="form-control" formControlName="el_balance" name="el_balance"
+                            id="el_balance" readonly />
+                    </div>
+                    <div class="form-group">
+                        <span> {{commonContent.LEAVES_BALANCE_SL_CL_BALANCE}}</span>
+                        <input type="number" class="form-control" formControlName="sl_cl_balance" name="sl_cl_balance"
+                            id="sl_cl_balance" readonly />
+                    </div>
+                    <button class="btn" mat-raised-button color="primary" (click)="insertUpdateLeavesBalance(updateLeavesBalance.value)">{{submit_btn}}</button>
+                </div>
+            </div>
+            </form>
+        </div>
+    </ng-template>
+    

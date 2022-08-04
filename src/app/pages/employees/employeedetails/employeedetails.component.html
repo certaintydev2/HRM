@@ -1,0 +1,224 @@
+<div class="container-fluid dashboardComponent">
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="mb-">Employee Details</h3>
+            <mat-card>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="profile-view">
+                            <div class="profile-img-wrap">
+                                <div class="profile-img">
+                                    <a href="#">
+                                        <img
+                                            alt=""
+                                            src="https://smarthr-ci.dreamguystech.com/template/light/public/assets/img/profiles/avatar-02.jpg"></a>
+                                    </div>
+                                </div>
+                                <div class="profile-basic">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="profile-info-left">
+                                                <h3 class="user-name">
+                                                    <b>{{personal_data.full_name}}</b>
+                                                </h3>
+
+                                                <div class="staff-id">Employee ID :
+                                                    {{personal_data.employee_code}}</div>
+
+                                                <div class="staff-id mb-1">
+                                                    Experience :
+                                                    {{personal_data.experience}}</div>
+
+                                                <div class="staff-id mb-1">Designations Name :
+                                                    {{designations[0]?.designation_name}}</div>
+                                                <div class="small mb-1 doj text-muted">Date of Join :
+                                                    {{personal_data.joining_date}}</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <ul class="personal-info">
+                                                <li>
+                                                    <div class="title">Phone:</div>
+                                                    <div class="text">
+                                                        <a href="tel:{{personal_data?.mobile}}">{{personal_data?.mobile}}</a>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="title">Email:</div>
+                                                    <div class="text">
+                                                        <a href="">{{personal_data?.personal_email}}</a>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="title">Birthday:</div>
+                                                    <div class="text">{{personal_data?.dob_actual}}</div>
+                                                </li>
+
+                                                <li>
+                                                    <div class="title">Gender:</div>
+                                                    <div class="text">{{personal_data.gender === '0'? 'Female':''}}
+                                                        {{personal_data.gender === '1'? 'Male':''}}
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="title">Reports to:</div>
+                                                    <div class="text">
+
+                                                        <a>
+                                                            {{personal_data?.primary_manager_name}}
+                                                        </a>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="title">Address:</div>
+                                                    <div class="text">{{personal_data?.current_address}}</div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pro-edit">
+                                    <a
+                                        data-bs-target="#profile_info"
+                                        data-bs-toggle="modal"
+                                        class="edit-icon"
+                                        href="#">
+                                        <i class="fa fa-pencil"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card>
+            </div>
+        </div>
+
+        <div class="row mt-4 mb-3">
+            
+            <div class="col-lg-6">
+                <div class="profile-view">
+                    <mat-card>
+                        <mat-card-header>
+                            <div class="d-flex w-100 justify-content-between align-items-center">
+                                <mat-card-title class="mb-0">Basic information</mat-card-title>
+                                <span class="editiconPencil">
+                                    <a href="#"> <i class="fa fa-pencil"></i></a>
+                                </span>
+                            </div>
+                            
+                        </mat-card-header>
+                        <mat-card-content>
+                            <ul class="personal-info">
+                                <li>
+                                <div class="title">Status</div>
+                                <div class="text">{{personal_data?.is_active === 1 ?'Active':''}}
+                                    {{personal_data?.is_active === 0 ? 'Inactive' : ''}}
+                                </div>
+                            </li>
+                            <li>
+                                <div class="title">Grade</div>
+                                <div class="text">{{personal_data?.grade_id}}</div>
+                            </li>
+                            <li>
+                                <div class="title">Official Email</div>
+                                <div class="text">
+                                    {{personal_data?.official_email_id}}
+                                </div>
+                            </li>
+                            <li>
+                                <div class="title">Microsoft Email</div>
+                                <div class="text">{{personal_data?.microsoft_email_id}}</div>
+                            </li>
+                            <li>
+                                <div class="title">Department</div>
+                                <div class="text">{{personal_data?.department_name}}</div>
+                            </li>
+                            <li>
+                                <div class="title">Reporting Manager</div>
+                                <div class="text"> {{personal_data?.primary_manager_name}}</div>
+                            </li>
+                            <li>
+                                <div class="title">Alternate Number</div>
+                                <div class="text">{{personal_data?.alternate_mobile}}</div>
+                            </li>
+                            <li>
+                                <div class="title">Blood Group</div>
+                                <div class="text">{{personal_data?.blood_group}}</div>
+                            </li>
+                            <li>
+                                <div class="title">DOB-documented</div>
+                                <div class="text">{{personal_data?.dob_doc}}</div>
+                            </li>
+                            <li>
+                                <div class="title">Marriage Anniversar</div>
+                                <div class="text">{{personal_data?.marriage_date}}</div>
+                            </li>
+                            <li>
+                                <div class="title">Resignation Date</div>
+                                <div class="text">{{personal_data?.resignation_date}}</div>
+                            </li>
+                            <li>
+                                <div class="title">Reason for Leaving</div>
+                                <div class="text">{{personal_data?.reason_for_leaving}}</div>
+                            </li>
+                            <li>
+                                <div class="title">Last Working Day</div>
+                                <div class="text">{{personal_data?.last_working_date}}</div>
+                            </li>
+                            <li>
+                                <div class="title">Temporary Address</div>
+                                <div class="text">{{personal_data?.current_address}}</div>
+                            </li>
+                            <li>
+                                <div class="title">Permanent Address</div>
+                                <div class="text">{{personal_data?.permanent_address}}</div>
+                            </li>
+                        </ul>
+                    </mat-card-content>
+                    </mat-card>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="profile-view">
+                    <mat-card>
+                        <mat-card-header>
+                            <div class="d-flex w-100 justify-content-between align-items-center">
+                                <mat-card-title class="mb-0">Bank information</mat-card-title>
+                                <span class="editiconPencil">
+                                    <a href="#"> <i class="fa fa-pencil"></i></a>
+                                </span>
+                            </div>
+                            
+                        </mat-card-header>
+                        <mat-card-content>
+                            <ul class="personal-info">
+                                <!-- <li>
+                                    <div class="title">Bank Name.</div>
+                                    <div class="text">9876543210</div>
+                                </li> -->
+                            <li>
+                                <div class="title">Bank Account Number</div>
+                                <div class="text">{{personal_data?.bank_account_number}}</div>
+                            </li>
+                            <li>
+                                <div class="title">Bank IFSC Code</div>
+                                <div class="text">
+                                    {{personal_data?.bank_ifsc_code}}
+                                </div>
+                            </li>
+                            <li>
+                                <div class="title">Pan Number</div>
+                                <div class="text">{{personal_data?.pan_number}}</div>
+                            </li>
+                            <li>
+                                <div class="title">Aadhar Number</div>
+                                <div class="text">{{personal_data?.aadhar_number}}</div>
+                            </li>
+                        </ul>
+                    </mat-card-content>
+                    </mat-card>
+                </div>
+            </div>
+        </div>
+    </div>

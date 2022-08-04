@@ -1,0 +1,105 @@
+body{
+    font-family: $font-family;
+    @include font(16px);
+    overflow-x: hidden;
+    @include font-weight (400);
+ }
+
+ a{
+   color: $dark_green;
+   &:hover{
+    outline:none;
+    text-decoration:none;
+   }
+   &:focus{
+    outline:none;
+    text-decoration:none;
+   }
+ }
+ table {
+  width: 100%;
+}
+
+.bgGreen{
+  background-color: $bgGreen;
+}
+
+.text-green{
+  color: $textGreen;
+}
+.text-green1{
+  color: $dark_green;
+}
+ p{
+   @include font(16px);
+   @include line (24px);
+ }
+ h1{
+  @include heading($heading,40px,50px);
+   @include margin-bottom (0px);
+}
+h2{
+   @include heading($heading,32px,42px);
+     @include margin-bottom (0px);
+}
+h3{
+  @include heading($heading,30px,36px);
+   @include margin-bottom (0px);
+}
+h4{
+  @include heading($heading,24px,30px);
+   @include margin-bottom (0px);
+}
+h5{
+  @include heading($heading,18px,24px);
+   @include margin-bottom (0px);
+}
+h6{
+  @include heading($heading,16px,22px);
+   @include margin-bottom (0px);
+  }
+  
+ img{
+   max-width:100%;
+  }
+  
+ ul,ol{
+   list-style: none;
+   @include margin (0px);
+   @include padding (0px);
+ }
+ 
+ .pointer{
+   cursor: pointer;
+ }
+
+ .tableFixHeight{
+  height: calc(100vh - 280px);
+  overflow: auto;
+}
+
+a {
+  color: $dark_green !important;
+}
+
+// change scroll bar 
+.changeScroll{
+  scrollbar-width: thin;
+  scrollbar-color: #f3f5f7 rgb(236, 236, 236);
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: rgb(199, 196, 196); 
+  }
+  
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgb(148, 145, 145); 
+  }
+}
+

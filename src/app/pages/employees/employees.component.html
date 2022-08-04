@@ -1,0 +1,103 @@
+<div class="container-fluid dashboardComponent">
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="mb-">All Employee list</h3>
+            <div>
+                <mat-card>
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <button mat-raised-button (click)="openDialog()" color="accent" class="">
+                                <span class="material-symbols-outlined">add</span> Add Employee</button>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="searchFilter">
+                                <mat-form-field floatLabel="never">
+                                    <mat-icon class="text-muted" matPrefix>search</mat-icon>
+                                    <input matInput type="text" (keyup)="applyFilter($event)" #input placeholder="Search...!">
+                                </mat-form-field>  
+                            </div>      
+                        </div>
+                    </div>
+                    
+                    <div class="">
+                        <div class="changeScroll tableFixHeight">
+                            <table class="table-hover table-striped" mat-table [dataSource]="dataSource" matSort >
+                                <tr class="mat-row" *matNoDataRow>
+                                    <td class="mat-cell" colspan="6">No data matching the filter
+                                      "{{input.value}}"</td>
+                                  </tr>
+
+                                <ng-container matColumnDef="position">
+                                    <th mat-header-cell class="fontSizetable" *matHeaderCellDef > No. </th>
+                                    <td mat-cell *matCellDef="let element; let i = index">{{i + 1}}</td>
+                                </ng-container>
+                            
+                                <ng-container matColumnDef="name" >
+                                    <th mat-header-cell class="fontSizetable" *matHeaderCellDef> Name </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.full_name}} </td>
+                                </ng-container>
+                            
+                                <ng-container matColumnDef="mobile">
+                                    <th mat-header-cell class="fontSizetable" *matHeaderCellDef>Mobile </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.mobile}} </td>
+                                </ng-container>
+                                
+                                <ng-container matColumnDef="employee_code">
+                                    <th mat-header-cell class="fontSizetable" *matHeaderCellDef> Employee code </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.employee_code}} </td>
+                                </ng-container>
+                            
+                                <ng-container matColumnDef="degination">
+                                    <th mat-header-cell class="fontSizetable" *matHeaderCellDef> Degination </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.degination}} </td>
+                                </ng-container>
+                                
+                                <ng-container matColumnDef="joining_date">
+                                    <th mat-header-cell class="fontSizetable" *matHeaderCellDef> Joining date </th>
+                                    <td mat-cell *matCellDef="let element"> 
+                                        <!-- <mat-chip class="btn btn-sm" color="primary" selected>Active</mat-chip> -->
+                                        {{element.joining_date}}
+                                    </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="status">
+                                    <th mat-header-cell class="fontSizetable" *matHeaderCellDef> Status </th>
+                                    <td mat-cell *matCellDef="let element"> 
+                                        <mat-chip-list>
+                                            <div *ngIf="element.is_active; else elseBlock">
+                                                <mat-chip class="">{{element.is_active === 1 ? 'Active': ''}}</mat-chip>
+                                              </div>
+                                              <ng-template #elseBlock>
+                                                
+                                                <mat-chip color="accent" class="">{{element.is_active === 0 ? 'Inactive': ''}}</mat-chip>
+                                              </ng-template>
+
+                                        </mat-chip-list> 
+                                    </td>
+                                </ng-container>
+                                    
+                                <ng-container matColumnDef="view">
+                                    <th mat-header-cell class="fontSizetable" *matHeaderCellDef> Action </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        
+                                        <button mat-raised-button mat-mini-fab color="warn">
+                                            <span class="material-symbols-outlined">delete</span>
+                                        </button>
+                                        <button class="ml-3" mat-raised-button mat-mini-fab color="">
+                                            <span class="material-symbols-outlined">drive_file_rename_outline</span>
+                                        </button>
+                                    </td>
+                                </ng-container>
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                            </table>
+                        </div>
+                         <mat-paginator #scheduledOrdersPaginator  class="mat-paginator-sticky" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20, 50, 100]"
+                        showFirstLastButtons >
+                        </mat-paginator>
+                    </div>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>

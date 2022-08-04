@@ -1,0 +1,151 @@
+<div class="container-fluid dashboardComponent">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="breadcrumb-bar mb-">
+                <ul class="breadcrumb">
+                    <li class="">
+                        <a class="text-dark" routerLink="/dashboard">Home</a>
+                    </li>
+                    <li class="px-1">/</li>
+                    <li class="">
+                        <a class="text-green1" routerLink="/dashboard">Dashboard</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-3 col-md-6 mb-3">
+            <div class="card prod-p-card bg-c-red">
+                <div class="card-body">
+                    <div class="row align-items-center m-b-25">
+                        <div class="col">
+                            <h6 class="m-b-5 text-white">Total Employees</h6>
+                            <h3 class="m-b-0 text-white">{{totalEmployees}}</h3>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fa fa-users text-c-red f-18"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-3">
+            <div class="card prod-p-card bg-c-blue">
+                <div class="card-body">
+                    <div class="row align-items-center m-b-25">
+                        <div class="col">
+                            <h6 class="m-b-5 text-white">Total Holidays</h6>
+                            <h3 class="m-b-0 text-white">{{totalHolidays}}</h3>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fa fa-hourglass-start text-c-red f-18"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-3">
+            <div class="card prod-p-card bg-c-green">
+                <div class="card-body">
+                    <div class="row align-items-center m-b-25">
+                        <div class="col">
+                            <h6 class="m-b-5 text-white">New Opnings</h6>
+                            <h3 class="m-b-0 text-white">{{totalOpnings?'4':'9'}}</h3>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fa fa-file-text-o text-c-red f-18"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-3">
+            <div class="card prod-p-card bg-c-yellow">
+                <div class="card-body">
+                    <div class="row align-items-center m-b-25">
+                        <div class="col">
+                            <h6 class="m-b-5 text-white">Total Project</h6>
+                            <h3 class="m-b-0 text-white">70</h3>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fa fa-file-text-o text-c-red f-18"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mt-3">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="mb-0">Monthly</h3>
+                </div>
+                <div class="card-body">
+                    <app-chart></app-chart>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mt-3">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="mb-0">Yearly</h3>
+                </div>
+                <div class="card-body">
+                    <app-chart></app-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="row">
+        <div class="col-md-3 mt-2">
+            <div class="employeeCard">
+                <div class="headerImg">
+                    <img class="img-fluid" src="assets/images/card1.webp" alt=""></div>
+                    <div class="cardBody">
+                        <h4>Name : John Smith</h4>
+                        <p>Profile : Backend developer</p>
+                        <p>DOB : 12-12-12</p>
+                        <p>Anniversary : 11-11-23</p>
+                        <p>Email : john@certainty.com</p>
+                        <p>Mobile : 9876543210</p>
+                    </div>
+                </div>
+        </div>
+        <div class="col-md-3 mt-2">
+                <div class="employeeCard">
+                    <div class="headerImg">
+                        <img class="img-fluid" src="assets/images/card3.jpg" alt=""></div>
+                        <div class="cardBody">
+                            <h4>Name : John Smith</h4>
+                            <p>Profile : Backend developer</p>
+                            <p>DOB : 12-12-12</p>
+                            <p>Anniversary : 11-11-23</p>
+                            <p>Email : john@certainty.com</p>
+                            <p>Mobile : 9876543210</p>
+                        </div>
+                    </div>
+        </div>
+        <div class="col-md-3 mt-2">
+                    <div class="employeeCard">
+                        <div class="headerImg">
+                            <img class="img-fluid" src="assets/images/card2.jpg" alt=""></div>
+                            <div class="cardBody">
+                                <h4>Name : John Smith</h4>
+                                <p>Profile : Backend developer</p>
+                                <p>DOB : 12-12-12</p>
+                                <p>Anniversary : 11-11-23</p>
+                                <p>Email : john@certainty.com</p>
+                                <p>Mobile : 9876543210</p>
+                            </div>
+                        </div>
+        </div>
+    </div> -->
+
+</div>

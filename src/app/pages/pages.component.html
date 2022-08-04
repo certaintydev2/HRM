@@ -1,0 +1,22 @@
+<!-- <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="fire" [fullScreen]="true">
+    <p class="text-white"> Loading... </p>
+</ngx-spinner> -->
+
+<mat-drawer-container class="main_container" autosize>
+    <mat-drawer #drawer class="inner_sidenav" opened="true" mode="side">
+      <app-layout></app-layout>
+    </mat-drawer>
+    <mat-toolbar class="mtToolBar">
+        <div class="d-flex justify-content-between w-100 p-2">
+            <button mat-mini-fab  color="primary" (click)="drawer.toggle()" class="example-icon" aria-label="icon-button with menu icon">
+                <mat-icon>menu</mat-icon>
+            </button>
+            <app-header></app-header>
+        </div>
+    </mat-toolbar>
+    <div class="wapper_container">
+        <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-container>
+
+

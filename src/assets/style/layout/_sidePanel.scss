@@ -1,0 +1,14 @@
+.inner_sidenav {
+  padding: 10px;
+  .mat-drawer.mat-drawer-side{
+    width: 230px;
+  }
+  .mat-expansion-panel:not([class*=mat-elevation-z]){
+      box-shadow: unset;
+  }
+  .mat-expansion-panel .mat-expansion-panel-header.cdk-keyboard-focused:not([aria-disabled=true]), .mat-expansion-panel .mat-expansion-panel-header.cdk-program-focused:not([aria-disabled=true]), .mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:hover:not([aria-disabled=true]) {
+      background: transparent;
+  }
+}
+  
+  

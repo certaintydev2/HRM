@@ -1,0 +1,46 @@
+<div class="container-fluid aboutComponent">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="breadcrumb-bar mb-">
+                <ul class="breadcrumb">
+                    <li class=""><a class="text-dark" routerLink="/pages/dashboard">Home</a></li>
+                    <li class="px-1">/</li>
+                    <li class=""><a class="text-green1" routerLink="about">About</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-7">
+            <h3><b>About Company</b></h3>
+            <p>Certainty is a Data Analytics company with a focus on solving client's end-to-end analytical problems. We are a team of innovative Data Scientists and Data Engineers who provide strategic consulting, thought leadership, and co-creation of revolutionary solutions.</p>
+            <p>The company was incorporated in the year 2017, and the foundation was laid by Madan Agrawal and Tarun Sinhal. Their sharp tactical and people management skills and problem-solving abilities are the cornerstones for leading the company on the right path.</p>
+            <p>The strategic approach of the founders builds an open and flexible work culture. We have a diverse pool of talented employees, and as said, that the success of the company lays in the hand of the employees working with them.</p>
+            <p>We believe that Company's growth is directly linked with Employees' growth and we provide necessary development opportunities and training platforms to help employees enhance their skills.</p>
+            <p><a href="https://certaintyinfotech.com" target="_blank">www.certaintyinfotech.com </a></p>
+        </div>
+        <div class="col-md-5">
+            <div class="changeScroll fixHeight">
+                <div class="row">
+                    <div class="col-md-12 mb-1 pointer" *ngFor="let item of _albumlist">
+                        <img src="{{item}}" (click)="onePopUpDisplay(item)" class="img-fluid" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Display image popup code start  -->
+<ng-template #callDisplyaImgDialog>
+    <div class="galleryDisplayPopup">
+      <mat-dialog-content>
+          <img src="{{_albumfullview}}" alt="{{_albumfullview}}">
+      </mat-dialog-content>
+      <mat-dialog-actions align="end">
+        <button mat-button (click)='dismissGallaryPopup(_albumfullview)' matDialogClose>Close</button>
+      </mat-dialog-actions>
+    </div>
+  </ng-template>
+  <!-- Display image popup code close  -->

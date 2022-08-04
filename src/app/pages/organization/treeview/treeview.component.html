@@ -1,0 +1,13 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="mb-">Organization / Organization Tree</h3>
+            <div>
+                <ngx-org-chart
+                    [nodes]="nodes"
+                    direction="horizontal"
+                    (itemClick)="employeeDetailview($event)"></ngx-org-chart>
+            </div>
+        </div>
+    </div>
+</div>

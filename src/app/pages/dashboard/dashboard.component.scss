@@ -1,0 +1,62 @@
+mat-chip {
+    max-width: 200px;
+  }
+
+  .bg-c-red {
+    background: linear-gradient(45deg, #e52d27, #b31217) !important;
+}
+.card {
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px #e2e5e8;
+  border: none;
+  margin-bottom: 30px;
+  transition: all 0.5s ease-in-out;
+}
+.card{
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.50);
+  -webkit-transition:all .9s ease; 
+  transition:all .9s ease; 
+  -moz-transition:all .9s ease; 
+  -o-transition:all .9s ease;
+  -ms-transition:all .9s ease; 
+  margin-bottom: 10px;
+  border-radius: 6px;
+  h6{
+    font-size: 18px;
+  }
+  h3{
+    font-size: 20px;
+  }
+  &:hover{
+    opacity: 1;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.50);
+    transform: translateY(-5px);
+  }
+  .card-body {
+    padding: 20px 25px;
+  }
+}
+
+.m-b-25 {
+  margin-bottom: 25px;
+}
+
+.prod-p-card i {
+  background-color: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  text-align: center;
+  padding: 11px 0;
+  font-size: 18px;
+}
+
+.bg-c-blue {
+  background: linear-gradient(45deg, #3949AB, #2962FF) !important;
+}
+.bg-c-green {
+  background: linear-gradient(45deg, #2ca961, #2ed88a) !important;
+}
+.bg-c-yellow {
+  background: linear-gradient(45deg, #F57C00, #FFB64D) !important;
+}

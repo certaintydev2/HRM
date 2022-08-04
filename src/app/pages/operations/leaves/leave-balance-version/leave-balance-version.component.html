@@ -1,0 +1,159 @@
+<div class="container-fluid">
+    <div class="row justify-content-between">
+        <div class="col-md-6">
+            <div class="breadcrumb-bar mb-">
+                <ul class="breadcrumb">
+                    <li class=""><a class="text-dark">Operation</a></li>
+                    <li class="px-1">/</li>
+                    <li class=""><a class="text-green1" routerLink="hrpolicies">{{commonContent.LEAVES_VERSION_HISTORY}}</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <a class="pull-right" mat-raised-button (click)="goBackLeaveBalance()"><i class="fa fa-arrow-left"></i> </a>
+        </div>
+    </div>
+    
+
+    <div class="row">
+        <div class="col-md-12">
+            <mat-card>
+                <div class="row pb-3 align-items-center justify-content-between h-100">
+                    <div class="col-md-3">
+                        <h4 class="mb-0">Employee {{commonContent.LEAVES_ID}}: {{version_data[0]?.leave_balance_id}}</h4>
+                    </div>
+                    <div class="col-md-4">
+                        <h4 class="mb-0 pull-right"> {{commonContent.LEAVES_BALANCE_YEAR}}: {{version_data[0]?.year}}</h4>
+                    </div>
+                </div>
+                <div class="">
+                    <div class="changeScroll tableFixHeight">
+                        <table class="table-hover table-striped" mat-table [dataSource]="dataSource" matSort>
+        
+                            <ng-container matColumnDef="basicDetails">
+                                <th mat-header-cell class="fontSizetable" *matHeaderCellDef>
+                                    {{commonContent.LEAVES_BASIC_DETAILS}} </th>
+                                <td mat-cell *matCellDef="let element;">
+                                    <div [ngClass]="{'item_change' :element.modified_field.split(',').includes('emp_id')}">
+                                        <span class="ttl"><b>emp_id: </b>{{element.emp_id}}</span>
+                                    </div>
+                                    <div [ngClass]="{'item_change' :element.modified_field.split(',').includes('emp_id')}">
+                                        <span class="ttl"><b>{{commonContent.LEAVES_BALANCE_EMPLOYEE_NAME}}:
+                                            </b>{{element.employee_name}}</span>
+                                    </div>
+                                    <div [ngClass]="{'item_change' :element.modified_field.split(',').includes('emp_id')}">
+                                        <span class="ttl"><b>{{commonContent.LEAVES_BALANCE_YEAR}}: </b>{{element.year}}</span>
+                                    </div>
+                                    <div [ngClass]="{'item_change' :element.modified_field.split(',').includes('is_active ')}">
+                                        <span class="ttl"><b>{{commonContent.LEAVES_BALANCE_STATUS}}: </b>{{element.is_active
+                                            ==1 ? "Active":"Inactive"}}</span>
+                                    </div>
+                                </td>
+                            </ng-container>
+        
+                            <ng-container matColumnDef="EarnedLeaves">
+                                <th mat-header-cell class="fontSizetable" *matHeaderCellDef>{{commonContent.LEAVES_EL}}</th>
+                                <td mat-cell *matCellDef="let element">
+                                    <div [ngClass]="{'item_change' : element.modified_field.split(',').includes('EL_balance')}">
+                                        <span class="ttl"><b>{{commonContent.LEAVES_BALANCE_EL_BALANCE}}:
+                                            </b>{{element.EL_balance}}</span>
+                                    </div>
+                                    <div
+                                        [ngClass]="{'item_change' : element.modified_field.split(',').includes('EL_encashed')}">
+                                        <span
+                                            class="ttl"><b>{{commonContent.LEAVES_BALANCE_ENCASHED}}:</b>{{element.EL_encashed}}</span>
+                                    </div>
+                                    <div
+                                        [ngClass]="{'item_change' : element.modified_field.split(',').includes('EL_taken_in_current_year')}">
+                                        <span class="ttl"><b>{{commonContent.LEAVES_BALANCE_ENCASHED}}:
+                                            </b>{{element.EL_taken_in_current_year}}</span>
+                                    </div>
+                                    <div [ngClass]="{'item_change' : element.modified_field.split(',').includes('el_comment')}">
+                                        <span class="ttl"><b>{{commonContent.LEAVES_BALANCE_EL_COMMENTS}}:
+                                            </b>{{element.el_comment}}</span>
+                                    </div>
+                                    <div
+                                        [ngClass]="{'item_change' : element.modified_field.split(',').includes('eligible_earned_leave')}">
+        
+                                        <span
+                                            class="ttl"><b>{{commonContent.LEAVES_BALANCE_ELIGIBLE_EARNED_LEAVES}}:</b>{{element.eligible_earned_leave}}</span>
+                                    </div>
+                                    <div
+                                        [ngClass]="{'item_change' : element.modified_field.split(',').includes('eligible_sick_leave')}">
+        
+                                        <span
+                                            class="ttl"><b>{{commonContent.LEAVES_BALANCE_ELIGIBLE_SICK_LEAVES}}:</b>{{element.eligible_sick_leave}}
+                                        </span>
+                                    </div>
+                                    <div
+                                        [ngClass]="{'item_change' : element.modified_field.split(',').includes('carray_forward_from_last_year_EL')}">
+                                        <span class="ttl"><b>{{commonContent.LEAVES_BALANCE_CARRY_FORWORD_LAST_YEAR}}:
+                                            </b>{{element.carray_forward_from_last_year_EL}}</span>
+                                    </div>
+                                    <div [ngClass]="{'item_change' : element.modified_field.split(',').includes('total_EL')}">
+                                        <span
+                                            class="ttl"><b>{{commonContent.LEAVES_BALANCE_TOTAL_EARNED_LEAVES}}:</b>{{element.total_EL}}</span>
+                                    </div>
+                                </td>
+                            </ng-container>
+        
+                            <ng-container matColumnDef="LeaveWithoutPay">
+                                <th mat-header-cell class="fontSizetable" *matHeaderCellDef>
+                                    {{commonContent.LEAVES_BALANCE_LEAVES_WITHOUT_PAY}}</th>
+                                <td mat-cell *matCellDef="let element">
+                                    <div
+                                        [ngClass]="{'item_change' : element.modified_field.split(',').includes('leave_balance_id')}">
+                                        <span class="ttl"><b>leave_balance_id:</b>{{element.leave_balance_id}}</span>
+                                    </div>
+                                    <div
+                                        [ngClass]="{'item_change' : element.modified_field.split(',').includes('leave_without_pay')}">
+                                        <span
+                                            class="ttl"><b>{{commonContent.LEAVES_BALANCE_LEAVES_WITHOUT_PAY}}:</b>{{element.leave_without_pay}}</span>
+                                    </div>
+                                    <div
+                                        [ngClass]="{'item_change' : element.modified_field.split(',').includes('lwp_comment')}">
+                                        <span class="ttl"><b>{{commonContent.LEAVES_BALANCE_LWP_COMMENTS}}:
+                                            </b>{{element.lwp_comment}}</span>
+                                    </div>
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="SLCL">
+                                <th mat-header-cell class="fontSizetable" *matHeaderCellDef>
+                                    {{commonContent.LEAVES_BALANCE_SL_CL}} </th>
+                                <td mat-cell *matCellDef="let element">
+                                    <div
+                                        [ngClass]="{'item_change' : element.modified_field.split(',').includes('SL_CL_in_current_year')}">
+                                        <span class="ttl"><b>{{commonContent.LEAVES_BALANCE_SL_CL_TAKEN_IN_CURRENT_YEAR}}:
+                                            </b>{{element.SL_CL_in_current_year}}</span>
+                                    </div>
+                                    <div
+                                        [ngClass]="{'item_change' : element.modified_field.split(',').includes('SL_Cl_balance')}">
+                                        <span
+                                            class="ttl"><b>{{commonContent.LEAVES_BALANCE_SL_CL_BALANCE}}:</b>{{element.SL_Cl_balance}}</span>
+                                    </div>
+        
+                                    <div
+                                        [ngClass]="{'item_change' : element.modified_field.split(',').includes('sl_cl_comment')}">
+                                        <span class="ttl"><b>{{commonContent.LEAVES_BALANCE_SL_CL_COMMENTS}}:
+                                            </b>{{element.sl_cl_comment}}</span>
+                                    </div>
+                                    <div [ngClass]="{'item_change' : element.modified_field.split(',').includes('total_SL')}">
+                                        <span class="ttl"><b>{{commonContent.LEAVES_BALANCE_TOTAL_CASUAL_LEAVES}}:
+                                            </b>{{element.total_SL}}</span>
+                                    </div>
+                                </td>
+                            </ng-container>
+        
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>
+                    </div>
+                    <mat-paginator #scheduledOrdersPaginator class="mat-paginator-sticky" [pageSize]="pageSize"
+                        [pageSizeOptions]="[5, 10, 20, 50, 100]" showFirstLastButtons>
+                    </mat-paginator>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+    
+</div>
